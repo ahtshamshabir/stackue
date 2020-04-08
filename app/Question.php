@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+	//can be used to set key name for eloquent to auto find the model instance (instead of explicit binding).
+	/*public function getRouteKeyName()
+	{
+		return 'slug';
+	}*/
 	protected $fillable = ['title','body'];
     public function user()
 	{
@@ -19,7 +24,7 @@ class Question extends Model
 	}
 	public function getUrlAttribute()
 	{
-		return route("questions.show",$this->id);
+		return route("questions.show",$this->slug);
 	}
 	public function getCreatedDateAttribute()
 	{
@@ -39,5 +44,9 @@ class Question extends Model
 		{
 			return "unanswered";
 		}
+	}
+	public function getBodyHtmlAttribute()
+	{
+		return \Parsedown::instance()->text($this->body);
 	}
 }
