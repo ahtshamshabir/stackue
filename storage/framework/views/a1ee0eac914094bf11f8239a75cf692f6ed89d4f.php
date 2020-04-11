@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
@@ -8,9 +6,9 @@
 					<div class="card-body">
 						<div class="card-title">
 							<div class="d-flex align-items-center">
-								<h1>{{$question->title}}</h1>
+								<h1><?php echo e($question->title); ?></h1>
 								<div class="ml-auto">
-									<a class="btn btn-outline-secondary" href="{{route('questions.index')}}">Back to all Questions</a>
+									<a class="btn btn-outline-secondary" href="<?php echo e(route('questions.index')); ?>">Back to all Questions</a>
 								</div>
 							</div>
 						</div>
@@ -30,13 +28,14 @@
 								</a>
 							</div>
 							<div class="media-body">
-								{!!$question->body_html!!}
+								<?php echo $question->body_html; ?>
+
 								<div class="float-right">
-									<span class="text-muted">Asked {{$question->created_at}}</span>
+									<span class="text-muted">Asked <?php echo e($question->created_at); ?></span>
 									<div class="media mt-2">
-										<a href="{{$question->user->url}}" class="pr-2"><img src="{{$question->user->avatar}}" alt="author image"></a>
+										<a href="<?php echo e($question->user->url); ?>" class="pr-2"><img src="<?php echo e($question->user->avatar); ?>" alt="author image"></a>
 										<div class="media-body mt-1">
-											<a href="{{$question->user->url}}">{{$question->user->name}}</a>
+											<a href="<?php echo e($question->user->url); ?>"><?php echo e($question->user->name); ?></a>
 										</div>
 									</div>
 								</div>
@@ -46,7 +45,8 @@
 				</div>
 			</div>
 		</div>
-		@include('answers._index', ['answers'=>$question->answers, 'answersCount'=>$question->answers_count])
-		@include('answers._create')
+		<?php echo $__env->make('answers._index', ['answers'=>$question->answers, 'answersCount'=>$question->answers_count], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<?php echo $__env->make('answers._create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	</div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
