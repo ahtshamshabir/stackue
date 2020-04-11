@@ -17,7 +17,7 @@
 							<a title="This answer is not useful" class="vote-down off" href="#">
 								<i class="fas fa-caret-down fa-3x"></i>
 							</a>
-							<a title="Mark as best answer (Click again to undo)" class="vote-accept mt-2" href="#">
+							<a title="Mark as best answer (Click again to undo)" class="{{$answer->status}} mt-2" href="#">
 								<i class="fas fa-check fa-2x"></i>
 							</a>
 						</div>
