@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Question;
 use App\Policies\QuestionPolicy;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -16,11 +16,11 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     protected $policies = [
-    	Question::class => QuestionPolicy::class,
+//    	Question::class => QuestionPolicy::class,
 	];
     public function boot()
     {
-    	$this->registerPolicies();
+//    	$this->registerPolicies();
     }
 
     /**

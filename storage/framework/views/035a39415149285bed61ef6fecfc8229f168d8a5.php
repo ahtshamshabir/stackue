@@ -24,12 +24,37 @@
 						<div class="media-body">
 							<?php echo $answer->body_html; ?>
 
-							<div class="float-right">
-								<span class="text-muted">Answered <?php echo e($answer->created_at); ?></span>
-								<div class="media mt-2">
-									<a href="<?php echo e($answer->user->url); ?>" class="pr-2"><img src="<?php echo e($answer->user->avatar); ?>" alt="author image"></a>
-									<div class="media-body mt-1">
-										<a href="<?php echo e($answer->user->url); ?>"><?php echo e($answer->user->name); ?></a>
+							<div class="row">
+								<div class="col-4">
+									<div class="ml-auto">
+										<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $answer)): ?>
+											<a class="btn btn-sm btn-outline-info"
+											   href="<?php echo e(route('questions.answers.edit', [$question->id, $answer->id])); ?>">Edit</a>
+										<?php endif; ?>
+										<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $answer)): ?>
+											<form class="form-delete"
+												  action="<?php echo e(route('questions.answers.destroy', [$question->id, $answer->id])); ?>"
+												  method="post">
+												
+												<?php echo method_field('DELETE'); ?>
+												<?php echo csrf_field(); ?>
+												<button type="submit" class="btn btn-sm btn-outline-danger"
+														onclick="return confirm('Are you sure?')">Delete
+												</button>
+											</form>
+										<?php endif; ?>
+									</div>
+								</div>
+								<div class="col-4">
+
+								</div>
+								<div class="col-4">
+									<span class="text-muted">Answered <?php echo e($answer->created_at); ?></span>
+									<div class="media mt-2">
+										<a href="<?php echo e($answer->user->url); ?>" class="pr-2"><img src="<?php echo e($answer->user->avatar); ?>" alt="author image"></a>
+										<div class="media-body mt-1">
+											<a href="<?php echo e($answer->user->url); ?>"><?php echo e($answer->user->name); ?></a>
+										</div>
 									</div>
 								</div>
 							</div>
