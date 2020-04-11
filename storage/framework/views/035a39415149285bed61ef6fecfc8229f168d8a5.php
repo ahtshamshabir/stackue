@@ -17,9 +17,21 @@
 							<a title="This answer is not useful" class="vote-down off" href="#">
 								<i class="fas fa-caret-down fa-3x"></i>
 							</a>
-							<a title="Mark as best answer (Click again to undo)" class="<?php echo e($answer->status); ?> mt-2" href="#">
-								<i class="fas fa-check fa-2x"></i>
-							</a>
+							<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('accept', $answer)): ?>
+								<a title="Mark as best answer (Click again to undo)" class="<?php echo e($answer->status); ?> mt-2" href="#"
+								   onclick="event.preventDefault();document.getElementById('accept-answer-<?php echo e($answer->id); ?>').submit();">
+									<i class="fas fa-check fa-2x"></i>
+								</a>
+								<form id="accept-answer-<?php echo e($answer->id); ?>" action="<?php echo e(route('answers.accept',$answer->id)); ?>" method="post" hidden>
+									<?php echo csrf_field(); ?>
+								</form>
+							<?php else: ?>
+								<?php if($answer->is_best): ?>
+									<a title="This is the best answer" class="<?php echo e($answer->status); ?> mt-2" href="#">
+										<i class="fas fa-check fa-2x"></i>
+									</a>
+								<?php endif; ?>
+							<?php endif; ?>
 						</div>
 						<div class="media-body">
 							<?php echo $answer->body_html; ?>

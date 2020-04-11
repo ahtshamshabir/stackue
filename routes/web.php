@@ -25,3 +25,4 @@ Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.sho
 //Route::get('/questions/{slug}', function(App\Question $question){return "yes";});
 //Route::post('/questions/{question}/answers', 'AnswersController@store')->name('answers.store');
 Route::resource('questions.answers', 'AnswersController')->only('store', 'edit', 'update', 'destroy'); //or ->except('index','create','show');
+Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept');
