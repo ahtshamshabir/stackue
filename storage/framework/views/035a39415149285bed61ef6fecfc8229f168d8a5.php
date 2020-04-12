@@ -27,7 +27,7 @@
 								</form>
 							<?php else: ?>
 								<?php if($answer->is_best): ?>
-									<a title="This is the best answer" class="<?php echo e($answer->status); ?> mt-2" href="#">
+									<a title="This is the best answer" class="<?php echo e($answer->status); ?> mt-2">
 										<i class="fas fa-check fa-2x"></i>
 									</a>
 								<?php endif; ?>
