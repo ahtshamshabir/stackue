@@ -11999,6 +11999,7 @@ a.text-dark:focus {
 }
 
 .vote-controls a {
+  text-decoration: none;
   cursor: pointer;
   color: #6c757d;
 }
