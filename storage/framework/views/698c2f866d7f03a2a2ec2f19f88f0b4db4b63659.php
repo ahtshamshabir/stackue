@@ -14,7 +14,7 @@
 					</div>
 					<div class="card-body">
 						<?php echo $__env->make('layouts._messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-						<?php $__currentLoopData = $questions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<?php $__empty_1 = true; $__currentLoopData = $questions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 							<div class="media">
 								<div class="d-flex flex-column counters">
 									<div class="vote">
@@ -61,7 +61,9 @@
 								</div>
 							</div>
 							<hr>
-						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+								<div class="alert alert-warning"><strong>Sorry!</strong> There are no questions available.</div>
+						<?php endif; ?>
 						<div class="mx-auto">
 							<?php echo e($questions->links()); ?>
 
