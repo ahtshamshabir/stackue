@@ -1,62 +1,66 @@
-
 //@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 //@import '~@fortawesome/fontawesome-free/scss/regular';
 //@import '~@fortawesome/fontawesome-free/scss/solid';
 //@import '~@fortawesome/fontawesome-free/scss/brands';
-
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.navbar-laravel
+{
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
 .counters
 {
 	margin-right: 4%;
 	font-size: 10px;
 	text-align: center;
 	justify-content: center;
+
 	strong
 	{
 		display: block;
 		font-size: 2em;
 	}
+
 	.vote, .answer
 	{
 		width: 60px;
 		height: 60px;
 	}
+
 	.status
 	{
 		&.unanswered //class="status unanswered"
 		{
 			border: none;
 		}
+
 		&.answered
 		{
 			border: 1px solid $color-green;
 			color: $color-green;
 		}
+
 		&.answered-accepted
 		{
 			background-color: $color-green;
 			color: $color-white;
 		}
 	}
+
 	.view
 	{
 		margin-top: 20%;
 
 	}
 }
+
 .form-delete
 {
 	display: inline;
@@ -68,30 +72,36 @@
 	margin-right: 30px;
 	text-align: center;
 	color: $gray-700;
+
 	span, a
 	{
 		display: block;
 	}
+
 	span
 	{
 		&.votes-count
 		{
 			font-size: 25px;
 		}
+
 		&.favorites-count
 		{
 			font-size: 12px;
 		}
 	}
+
 	a
 	{
 		text-decoration: none;
 		cursor: pointer;
 		color: $gray-600;
+
 		&.off, &.off:hover
 		{
 			color: $gray-500;
 		}
+
 		&.favorite
 		{
 			&.favorited, &.favorited:hover
@@ -99,9 +109,20 @@
 				color: $yellow;
 			}
 		}
+
 		&.vote-accepted
 		{
 			color: $green;
 		}
+	}
+}
+
+.post
+{
+	padding: 20px 0;
+
+	&:not(:last-child)
+	{
+		border-bottom: 1px solid rgba($black, 0.1);
 	}
 }
