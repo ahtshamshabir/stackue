@@ -9,42 +9,7 @@
 				<?php echo $__env->make('layouts._messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 				<?php $__currentLoopData = $answers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $answer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<div class="media">
-						<div class="d-flex flex-column vote-controls">
-							<a title="This answer is useful" class="vote-up <?php echo e(Auth::guest() ? 'off' : ''); ?>"
-							   onclick="event.preventDefault();document.getElementById('up-vote-answer-<?php echo e($answer->id); ?>').submit();" href="#">
-								<i class="fas fa-caret-up fa-3x"></i>
-							</a>
-							<form id="up-vote-answer-<?php echo e($answer->id); ?>"
-								  action="/answers/<?php echo e($answer->id); ?>/vote" method="post" hidden>
-								<?php echo csrf_field(); ?>
-								<input type="hidden" name="vote" value="1">
-							</form>
-							<span class="votes-count"><?php echo e($answer->votes_count); ?></span>
-							<a title="This answer is not useful" class="vote-down <?php echo e(Auth::guest() ? 'off' : ''); ?>"
-							   onclick="event.preventDefault();document.getElementById('down-vote-answer-<?php echo e($answer->id); ?>').submit();" href="#">
-								<i class="fas fa-caret-down fa-3x"></i>
-							</a>
-							<form id="down-vote-answer-<?php echo e($answer->id); ?>"
-								  action="/answers/<?php echo e($answer->id); ?>/vote" method="post" hidden>
-								<?php echo csrf_field(); ?>
-								<input type="hidden" name="vote" value="-1">
-							</form>
-							<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('accept', $answer)): ?>
-								<a title="Mark as best answer (Click again to undo)" class="<?php echo e($answer->status); ?> mt-2" href="#"
-								   onclick="event.preventDefault();document.getElementById('accept-answer-<?php echo e($answer->id); ?>').submit();">
-									<i class="fas fa-check fa-2x"></i>
-								</a>
-								<form id="accept-answer-<?php echo e($answer->id); ?>" action="<?php echo e(route('answers.accept',$answer->id)); ?>" method="post" hidden>
-									<?php echo csrf_field(); ?>
-								</form>
-							<?php else: ?>
-								<?php if($answer->is_best): ?>
-									<a title="This is the best answer" class="<?php echo e($answer->status); ?> mt-2">
-										<i class="fas fa-check fa-2x"></i>
-									</a>
-								<?php endif; ?>
-							<?php endif; ?>
-						</div>
+						<?php echo $__env->make('shared._vote',['model' => $answer], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 						<div class="media-body">
 							<?php echo $answer->body_html; ?>
 
@@ -73,13 +38,10 @@
 
 								</div>
 								<div class="col-4">
-									<span class="text-muted">Answered <?php echo e($answer->created_at); ?></span>
-									<div class="media mt-2">
-										<a href="<?php echo e($answer->user->url); ?>" class="pr-2"><img src="<?php echo e($answer->user->avatar); ?>" alt="author image"></a>
-										<div class="media-body mt-1">
-											<a href="<?php echo e($answer->user->url); ?>"><?php echo e($answer->user->name); ?></a>
-										</div>
-									</div>
+									<?php echo $__env->make('shared._author', [
+									'model' => $answer,
+									'label' => 'answered'
+									], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 								</div>
 							</div>
 						</div>
