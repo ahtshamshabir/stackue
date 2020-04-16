@@ -28,10 +28,7 @@
 
 			</div>
 			<div class="col-4">
-				<?php echo $__env->make('shared._author', [
-				'model' => $answer,
-				'label' => 'answered'
-				], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<user-info :model="<?php echo e($answer); ?>" label="Answered"></user-info>
 			</div>
 		</div>
 	</div>
