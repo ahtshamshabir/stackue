@@ -36,9 +36,7 @@ $formAction = "$firstUriSegment/$model->id/vote";
 		<input type="hidden" name="vote" value="-1">
 	</form>
 	<?php if($model instanceof App\Question): ?>
-		<?php echo $__env->make('shared._favorite', [
-		'model' => $model
-		], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<favorite :question="<?php echo e($model); ?>"></favorite>
 	<?php elseif($model instanceof App\Answer): ?>
 		<?php echo $__env->make('shared._accept', [
 		'model' => $model
