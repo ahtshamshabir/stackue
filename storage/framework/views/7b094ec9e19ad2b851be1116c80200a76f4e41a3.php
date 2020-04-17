@@ -18,16 +18,7 @@
 								<a @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
 							<?php endif; ?>
 							<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $answer)): ?>
-								<form class="form-delete"
-									  action="<?php echo e(route('questions.answers.destroy', [$question->id, $answer->id])); ?>"
-									  method="post">
-									
-									<?php echo method_field('DELETE'); ?>
-									<?php echo csrf_field(); ?>
-									<button type="submit" class="btn btn-sm btn-outline-danger"
-											onclick="return confirm('Are you sure?')">Delete
-									</button>
-								</form>
+								<button @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
 							<?php endif; ?>
 						</div>
 					</div>
