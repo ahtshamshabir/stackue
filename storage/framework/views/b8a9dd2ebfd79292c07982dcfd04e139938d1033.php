@@ -10,8 +10,8 @@
 	?>
 <?php endif; ?>
 <?php
-$formId = $name . "-" . $model->id;
-$formAction = "$firstUriSegment/$model->id/vote";
+	$formId = $name . "-" . $model->id;
+	$formAction = "$firstUriSegment/$model->id/vote";
 ?>
 <div class="d-flex flex-column vote-controls">
 	<a title="This <?php echo e($name); ?> is useful" class="vote-up <?php echo e(Auth::guest() ? 'off' : ''); ?>"
@@ -38,8 +38,6 @@ $formAction = "$firstUriSegment/$model->id/vote";
 	<?php if($model instanceof App\Question): ?>
 		<favorite :question="<?php echo e($model); ?>"></favorite>
 	<?php elseif($model instanceof App\Answer): ?>
-		<?php echo $__env->make('shared._accept', [
-		'model' => $model
-		], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<accept :answer="<?php echo e($model); ?>"></accept>
 	<?php endif; ?>
 </div>
