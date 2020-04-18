@@ -19,7 +19,10 @@ import VueIziToast from 'vue-izitoast';
 
 import 'izitoast/dist/css/iziToast.min.css';
 
+import authorization from "./authorization/authorize";
+
 Vue.use(VueIziToast);
+Vue.use(authorization);
 
 Vue.component('user-info', require('./components/UserInfo.vue'));
 Vue.component('answer', require('./components/Answer.vue'));
@@ -27,5 +30,5 @@ Vue.component('favorite', require('./components/Favorite.vue'));
 Vue.component('accept', require('./components/Accept.vue'));
 
 const app = new Vue({
-    el: '#app'
+	el: '#app'
 });

@@ -38,9 +38,9 @@
 		{
 			canAccept()
 			{
-				return true;
+				return this.authorize('accept', this.answer);
 			},
-			Accepted()
+			accepted()
 			{
 				return !this.canAccept && this.isBest;
 			},
