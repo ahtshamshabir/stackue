@@ -11,47 +11,50 @@
 </template>
 
 <script>
+	import eventBus from "../event-bus";
+
 	export default {
 		name: "Accept",
 		props: ['answer'],
-		data()
-		{
+		data() {
 			return {
 				isBest: this.answer.is_best,
 				id: this.answer.id,
 			}
 		},
 		methods: {
-			create()
-			{
+			create() {
 				axios.post(`/answers/${this.id}/accept`)
-					.then(res =>{
+					.then(res => {
 						this.$toast.success(res.data.message, 'Success', {
 							timeout: 3000,
 							position: 'bottomLeft',
 						});
-						this.isBest=true;
+						this.isBest = true;
+						eventBus.$emit('accepted', this.id);
 					});
 			}
 		},
 		computed:
-		{
-			canAccept()
 			{
-				return this.authorize('accept', this.answer);
+				canAccept() {
+					return this.authorize('accept', this.answer);
+				},
+				accepted() {
+					return !this.canAccept && this.isBest;
+				},
+				classes() {
+					return [
+						'mt-2',
+						this.isBest ? 'vote-accepted' : ''
+					]
+				}
 			},
-			accepted()
-			{
-				return !this.canAccept && this.isBest;
-			},
-			classes()
-			{
-				return [
-					'mt-2',
-					this.isBest ? 'vote-accepted' : ''
-				]
-			}
-		}
+		created() {
+			eventBus.$on('accepted', id => {
+				this.isBest = id === this.id;
+			});
+		},
 	}
 </script>
 
