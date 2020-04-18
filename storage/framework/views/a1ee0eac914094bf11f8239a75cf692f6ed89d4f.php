@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<answers :answers="<?php echo e($question->answers); ?>" :count="<?php echo e($question->answers_count); ?>"></answers>
+		<answers :question="<?php echo e($question); ?>"></answers>
 		<?php echo $__env->make('answers._create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	</div>
 <?php $__env->stopSection(); ?>

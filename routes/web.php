@@ -22,7 +22,7 @@ Route::resource('/questions', 'QuestionsController')->except('show');
 Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.show');
 //Route::get('/questions/{slug}', function(App\Question $question){return "yes";});
 //Route::post('/questions/{question}/answers', 'AnswersController@store')->name('answers.store');
-Route::resource('questions.answers', 'AnswersController')->only('store', 'edit', 'update', 'destroy'); //or ->except('index','create','show');
+Route::resource('questions.answers', 'AnswersController')->only('index', 'store', 'edit', 'update', 'destroy'); //or ->except('index','create','show');
 Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept');
 
 
