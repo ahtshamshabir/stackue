@@ -1,6 +1,6 @@
 <answer :answer="<?php echo e($answer); ?>" inline-template>
 	<div class="media post">
-		<?php echo $__env->make('shared._vote',['model' => $answer], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<vote :model="<?php echo e($answer); ?>" name="answer"></vote>
 		<div class="media-body">
 			<form id="form" v-if="editing" action="#" @submit.prevent="update">
 				<div class="form-group">

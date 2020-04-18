@@ -15,7 +15,7 @@
 						</div>
 						<hr>
 						<div class="media">
-							<?php echo $__env->make('shared._vote',['model' => $question], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+							<vote :model="<?php echo e($question); ?>" name="question"></vote>
 							<div class="media-body">
 								<?php echo $question->body_html; ?>
 
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<?php echo $__env->make('answers._index', ['answers'=>$question->answers, 'answersCount'=>$question->answers_count], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<answers :answers="<?php echo e($question->answers); ?>" :count="<?php echo e($question->answers_count); ?>"></answers>
 		<?php echo $__env->make('answers._create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	</div>
 <?php $__env->stopSection(); ?>
