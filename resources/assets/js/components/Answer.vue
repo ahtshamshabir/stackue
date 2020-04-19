@@ -13,9 +13,9 @@
 				<div v-html="bodyHtml"></div>
 				<div class="row">
 					<div class="col-4">
-						<div class="ml-auto">
-							<a v-if="authorize('modify', answer)" @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
-							<button v-if="authorize('modify', answer)" @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
+						<div v-if="authorize('modify', answer)" class="ml-auto">
+							<a @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
+							<button @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
 						</div>
 					</div>
 					<div class="col-4">
@@ -31,8 +31,11 @@
 </template>
 
 <script>
+	import Vote from "./Vote";
+	import UserInfo from "./UserInfo";
 	export default {
 		name: "Answer",
+		components: {Vote, UserInfo},
 		props: ['answer'],
 		data() {
 			return {
@@ -105,6 +108,6 @@
 	}
 </script>
 
-<style scoped>
+<style>
 
 </style>
